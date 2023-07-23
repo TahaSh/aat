@@ -1,4 +1,4 @@
-# Aat (Animate at) — [Demo built with it](https://codepen.io/tahazsh/pen/WNYKage)
+# Aat (Animate at) — [Demo built with it](https://codepen.io/tahazsh/full/WNYKage)
 
 > Animate on scroll like a pro
 
