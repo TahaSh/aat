@@ -1,0 +1,36 @@
+{
+  "name": "aat",
+  "author": "Taha Shashtari (taha@tahazsh.com)",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/aat.umd.cjs",
+  "module": "./dist/aat.js",
+  "exports": {
+    ".": {
+      "import": "./dist/aat.js",
+      "require": "./dist/aat.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TahaSh/aat.git"
+  },
+  "keywords": [
+    "scroll",
+    "animation",
+    "transition"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.4.5"
+  }
+}

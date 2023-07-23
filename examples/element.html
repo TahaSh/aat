@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Container ScrollObserver</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .space {
+        height: 100vh;
+      }
+
+      .box {
+        transform-origin: 0 0;
+        width: 100px;
+        height: 100px;
+        background: red;
+        opacity: 0;
+        scale: 1;
+        margin-left: 50px;
+      }
+
+      .container {
+        margin: 50px auto 0;
+        max-width: 400px;
+        width: calc(100% - 10px);
+        height: 200px;
+        border: 1px solid black;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="space"></div>
+        <div class="box"></div>
+        <div class="space"></div>
+      </div>
+      <div class="space"></div>
+      <div class="box"></div>
+      <div class="space"></div>
+    </div>
+    <script type="module">
+      import { ScrollObserver, valueAtPercentage } from '/dist/aat'
+
+      const pageBox = document.querySelector('body > div > .box')
+      ScrollObserver.Element(pageBox, {
+        offsetBottom: 100,
+        offsetTop: 100
+      }).onScroll(({ percentageY }) => {
+        pageBox.style.opacity = percentageY
+        pageBox.style.scale = valueAtPercentage({
+          from: 1,
+          to: 1.5,
+          percentage: percentageY
+        })
+      })
+
+      const containerBox = document.querySelector('.container > .box')
+      ScrollObserver.Element(containerBox, {
+        offsetBottom: 0,
+        offsetTop: 0,
+        container: document.querySelector('.container')
+      }).onScroll(({ percentageY }) => {
+        containerBox.style.opacity = percentageY
+        containerBox.style.scale = valueAtPercentage({
+          from: 1,
+          to: 1.5,
+          percentage: percentageY
+        })
+      })
+    </script>
+  </body>
+</html>

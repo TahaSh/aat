@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Section</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .space {
+        height: 100vh;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        background: red;
+        scale: 1;
+        will-change: transform;
+      }
+
+      .section {
+        background: #90439411;
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .section-content {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .section-space {
+        height: 100vh;
+      }
+
+      .section-space--resize {
+        height: 100vh;
+      }
+
+      .section-space--end {
+        height: 50vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="space"></div>
+      <div class="section">
+        <div class="section-content">
+          <div class="box"></div>
+        </div>
+        <div class="section-space section-space--resize"></div>
+        <div class="section-space section-space--radius"></div>
+        <div class="section-space section-space--end"></div>
+      </div>
+      <div class="space"></div>
+    </div>
+    <script type="module">
+      import { ScrollObserver, valueAtPercentage } from '/dist/aat'
+
+      const section = document.querySelector('.section')
+      const box = document.querySelector('.box')
+
+      ScrollObserver.Element(section).onScroll(({ percentageY }) => {
+        box.style.opacity = percentageY
+      })
+
+      const sectionSpaceResize = document.querySelector(
+        '.section-space--resize'
+      )
+      ScrollObserver.Element(sectionSpaceResize).onScroll(({ percentageY }) => {
+        box.style.scale = valueAtPercentage({
+          from: 1,
+          to: 2,
+          percentage: percentageY
+        })
+      })
+
+      const sectionSpaceRadius = document.querySelector(
+        '.section-space--radius'
+      )
+      ScrollObserver.Element(sectionSpaceRadius).onScroll(({ percentageY }) => {
+        box.style.borderRadius = valueAtPercentage({
+          from: 0,
+          to: 50,
+          percentage: percentageY,
+          unit: '%'
+        })
+      })
+    </script>
+  </body>
+</html>
