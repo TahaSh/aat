@@ -15,7 +15,7 @@ The second one is for animating based on the scroll position of a specific eleme
 You can install it using NPM:
 
 ```
-npm install aat
+npm install aatjs
 ```
 
 Then import it:
@@ -27,7 +27,7 @@ import { ScrollObserver } from 'aat'
 Or include it as a <script> in your page:
 
 ```html
-<script src="https://unpkg.com/aat/dist/aat.umd.cjs"></script>
+<script src="https://unpkg.com/aatjs/dist/aat.umd.cjs"></script>
 ```
 
 Then use it:
