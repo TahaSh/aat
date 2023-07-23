@@ -6,7 +6,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/aat.js'),
       name: 'aat',
-      fileName: 'aat'
+      fileName: (format) => `aat.${format === 'es' ? 'js' : 'min.js'}`
     }
   }
 })
