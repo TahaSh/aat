@@ -27,7 +27,7 @@ import { ScrollObserver } from 'aat'
 Or include it as a <script> in your page:
 
 ```html
-<script src="https://unpkg.com/aatjs/dist/aat.umd.cjs"></script>
+<script src="https://unpkg.com/aatjs/dist/aat.min.js"></script>
 ```
 
 Then use it:

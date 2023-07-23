@@ -2,14 +2,14 @@
   "name": "aatjs",
   "author": "Taha Shashtari (taha@tahazsh.com)",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
-  "main": "./dist/aat.umd.cjs",
+  "main": "./dist/aat.min.js",
   "module": "./dist/aat.js",
   "exports": {
     ".": {
       "import": "./dist/aat.js",
-      "require": "./dist/aat.umd.cjs"
+      "require": "./dist/aat.min.js"
     }
   },
   "files": [
