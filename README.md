@@ -2,7 +2,7 @@
 
 > Animate on scroll like a pro
 
-**Aat** helps you create any kind of animation you imagine on scroll (vertically and horizontally).
+**Aat** helps you create any scroll-based animation you can imagine (vertically and horizontally).
 
 All you need to know is these two functions: `ScrollObserver.Container()` and `ScrollObserver.Element()`.
 
