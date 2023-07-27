@@ -1,8 +1,8 @@
-function s(i, e, t) {
-  return Math.min(Math.max(i, e), t);
+function s(o, e, t) {
+  return Math.min(Math.max(o, e), t);
 }
-function p({ from: i, to: e, percentage: t, unit: n }) {
-  return i + (e - i) * t + (n || "");
+function p({ from: o, to: e, percentage: t, unit: n }) {
+  return o + (e - o) * t + (n || "");
 }
 const a = {
   offsetBottom: 0,
@@ -29,7 +29,7 @@ class h extends r {
     super(), this._container = e, (e === document.documentElement ? window : e).addEventListener("scroll", this._onScroll.bind(this));
   }
   _onScroll() {
-    const e = this._container.scrollTop, t = this._container.scrollHeight - this._container.clientHeight, n = s(e / t, 0, 1) || 0, o = this._container.scrollLeft, c = this._container.scrollWidth - this._container.clientWidth, l = s(o / c, 0, 1) || 0;
+    const e = this._container.scrollTop, t = this._container.scrollHeight - this._container.clientHeight, n = s(e / t, 0, 1) || 0, i = this._container.scrollLeft, c = this._container.scrollWidth - this._container.clientWidth, l = s(i / c, 0, 1) || 0;
     this._handler && typeof this._handler == "function" && requestAnimationFrame(() => this._handler({ percentageY: n, percentageX: l }));
   }
 }
@@ -60,13 +60,30 @@ class _ extends r {
       bottom: t.bottom - n.bottom
     };
   }
+  // side is a string with possible values: Top/Bottom/Left/Right
+  getOffsetValue(e) {
+    const t = `offset${e}`;
+    return typeof this._options[t] == "function" ? this._options[t]() : this._options[t];
+  }
+  get _offsetBottom() {
+    return this.getOffsetValue("Bottom");
+  }
+  get _offsetTop() {
+    return this.getOffsetValue("Top");
+  }
+  get _offsetLeft() {
+    return this.getOffsetValue("Left");
+  }
+  get _offsetRight() {
+    return this.getOffsetValue("Right");
+  }
   _calculatePercentageY() {
-    const e = this._elRectRelativeToContainer, t = this._containerClientHeight - this._options.offsetBottom, n = this._options.offsetTop, o = t - n;
-    return s((t - e.top) / o, 0, 1);
+    const e = this._elRectRelativeToContainer, t = this._containerClientHeight - this._offsetBottom, n = this._offsetTop, i = t - n;
+    return s((t - e.top) / i, 0, 1);
   }
   _calculatePercentageX() {
-    const e = this._elRectRelativeToContainer, t = this._containerClientWidth - this._options.offsetRight, n = this._options.offsetLeft, o = t - n;
-    return s((t - e.left) / o, 0, 1);
+    const e = this._elRectRelativeToContainer, t = this._containerClientWidth - this._offsetRight, n = this._offsetLeft, i = t - n;
+    return s((t - e.left) / i, 0, 1);
   }
   _onScroll() {
     const e = this._calculatePercentageY(), t = this._calculatePercentageX();

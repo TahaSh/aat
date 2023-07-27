@@ -110,10 +110,35 @@ class ElementScrollObserver extends ScrollObserver {
     }
   }
 
+  // side is a string with possible values: Top/Bottom/Left/Right
+  getOffsetValue(side) {
+    const key = `offset${side}`
+    if (typeof this._options[key] === 'function') {
+      return this._options[key]()
+    }
+    return this._options[key]
+  }
+
+  get _offsetBottom() {
+    return this.getOffsetValue('Bottom')
+  }
+
+  get _offsetTop() {
+    return this.getOffsetValue('Top')
+  }
+
+  get _offsetLeft() {
+    return this.getOffsetValue('Left')
+  }
+
+  get _offsetRight() {
+    return this.getOffsetValue('Right')
+  }
+
   _calculatePercentageY() {
     const rect = this._elRectRelativeToContainer
-    const startPoint = this._containerClientHeight - this._options.offsetBottom
-    const endPoint = this._options.offsetTop
+    const startPoint = this._containerClientHeight - this._offsetBottom
+    const endPoint = this._offsetTop
 
     const viewHeight = startPoint - endPoint
 
@@ -122,8 +147,8 @@ class ElementScrollObserver extends ScrollObserver {
 
   _calculatePercentageX() {
     const rect = this._elRectRelativeToContainer
-    const startPoint = this._containerClientWidth - this._options.offsetRight
-    const endPoint = this._options.offsetLeft
+    const startPoint = this._containerClientWidth - this._offsetRight
+    const endPoint = this._offsetLeft
 
     const viewWidth = startPoint - endPoint
 

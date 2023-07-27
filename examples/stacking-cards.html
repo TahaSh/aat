@@ -191,7 +191,7 @@
         const cardInner = card.querySelector('.card__inner')
         ScrollObserver.Element(nextCard, {
           offsetTop,
-          offsetBottom: window.innerHeight - card.clientHeight
+          offsetBottom: () => window.innerHeight - card.clientHeight
         }).onScroll(({ percentageY }) => {
           cardInner.style.scale = valueAtPercentage({
             from: 1,
